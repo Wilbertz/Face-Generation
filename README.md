@@ -24,6 +24,8 @@ This project was written in Python 3.7, using a Jupyter Notebook on Anaconda. Th
 
     - README.md  (This readme file)
     - dlnd_face_generation.ipynb (The Jupyter notebook containing the analysis)
+    - problem_unittests.py (Udacity unit tests)
+    - preprocessing.py (Dataloader implementation)
 
 ## Project Motivation <a name="motivation" />
 
