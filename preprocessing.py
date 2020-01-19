@@ -19,6 +19,21 @@ def get_dataloader(batch_size, image_size, data_dir='processed_celeba_small/'):
     :return: DataLoader with batched data
     """
 
-    # TODO: Implement function and return a dataloader
+    transform = transforms.Compose([transforms.Resize(image_size), transforms.ToTensor()])
 
-    return None
+    training_set = datasets.ImageFolder(data_dir, transform=transform)
+
+    training_loader = torch.utils.data.DataLoader(dataset=training_set, batch_size=batch_size, shuffle=True)
+
+    return training_loader
+
+
+# Define function hyper parameters
+batch_size = 128
+img_size = 32
+
+"""
+DON'T MODIFY ANYTHING IN THIS CELL THAT IS BELOW THIS LINE
+"""
+# Call your function and get a dataloader
+celeba_train_loader = get_dataloader(batch_size, img_size)
