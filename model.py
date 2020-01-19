@@ -107,3 +107,17 @@ class Generator(nn.Module):
 
 
 tests.test_generator(Generator)
+
+
+def weights_init_normal(m):
+    """
+    Applies initial weights to certain layers in a model .
+    The weights are taken from a normal distribution
+    with mean = 0, std dev = 0.02.
+    :param m: A module or layer in a network
+    """
+    # classname will be something like:
+    # `Conv`, `BatchNorm2d`, `Linear`, etc.
+    classname = m.__class__.__name__
+
+    # TODO: Apply initial weights to convolutional and linear layers
