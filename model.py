@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -67,3 +68,42 @@ class Discriminator(nn.Module):
 
 
 tests.test_discriminator(Discriminator)
+
+
+class Generator(nn.Module):
+
+    def __init__(self, z_size, conv_dim):
+        """
+        Initialize the Generator Module
+        :param z_size: The length of the input latent vector, z
+        :param conv_dim: The depth of the inputs to the *last* transpose convolutional layer
+        """
+        super(Generator, self).__init__()
+
+        # complete init function
+        self.conv_dim = conv_dim
+
+        self.fc = nn.Linear(z_size, conv_dim * 4 * 4 * 4)
+
+        self.deconv1 = deconv(conv_dim * 4, conv_dim * 2, 4)
+        self.deconv2 = deconv(conv_dim * 2, conv_dim, 4)
+        self.deconv3 = deconv(conv_dim, 3, 4, batch_norm=False)
+
+    def forward(self, x):
+        """
+        Forward propagation of the neural network
+        :param x: The input to the neural network
+        :return: A 32x32x3 Tensor image as output
+        """
+        # define feedforward behavior
+        x = self.fc(x)
+        x = x.view(-1, self.conv_dim * 4, 4, 4)
+
+        x = F.relu(self.deconv1(x))
+        x = F.relu(self.deconv2(x))
+        x = torch.tanh(self.deconv3(x))
+
+        return x
+
+
+tests.test_generator(Generator)
