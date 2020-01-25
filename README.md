@@ -28,6 +28,8 @@ This project was written in Python 3.7, using a Jupyter Notebook on Anaconda. Th
     - dlnd_face_generation.ipynb (The Jupyter notebook containing the analysis)
     - problem_unittests.py (Udacity unit tests)
     - preprocessing.py (Dataloader implementation)
+    - init_weights.py (Initialization implementation)
+    - model.py (The discriminator and generator networks)
 
 ## Project Motivation <a name="motivation" />
 
